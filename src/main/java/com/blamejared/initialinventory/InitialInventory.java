@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
+import java.io.IOException;
 
 import static com.blamejared.initialinventory.reference.Reference.*;
 
@@ -22,8 +23,14 @@ public class InitialInventory {
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         scriptFile = new File(e.getModConfigurationDirectory(), MOD_NAME + File.separator);
+        scriptFile = new File(scriptFile, "inventory.zs");
         if(!scriptFile.exists()) {
-            scriptFile.mkdirs();
+            scriptFile.getParentFile().mkdirs();
+            try {
+                scriptFile.createNewFile();
+            } catch(IOException e1) {
+                e1.printStackTrace();
+            }
         }
         MineTweakerAPI.registerBracketHandler(new ItemBracketHandler());
         ItemBracketHandler.rebuildItemRegistry();
