@@ -21,7 +21,7 @@ public class InvHandler {
 
     @ZenMethod
     public static void addStartingItem(IItemStack item) {
-        Map<ItemStack, Integer> map = new HashMap<ItemStack, Integer>();
+        Map<ItemStack, Integer> map = new HashMap<>();
         map.put(InputHelper.toStack(item), -1);
         MineTweakerAPI.apply(new Add(map));
         System.out.println("adding inv item");
@@ -29,7 +29,7 @@ public class InvHandler {
 
     @ZenMethod
     public static void addStartingItem(IItemStack item, int slotID) {
-        Map<ItemStack, Integer> map = new HashMap<ItemStack, Integer>();
+        Map<ItemStack, Integer> map = new HashMap<>();
         map.put(InputHelper.toStack(item), slotID);
         MineTweakerAPI.apply(new Add(map));
         System.out.println("adding inv item slot");
