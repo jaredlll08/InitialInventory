@@ -32,16 +32,15 @@ public class InitialInventory {
                 e1.printStackTrace();
             }
         }
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
         MineTweakerAPI.registerBracketHandler(new ItemBracketHandler());
         ItemBracketHandler.rebuildItemRegistry();
         MineTweakerAPI.registerClass(InvHandler.class);
         MineTweakerAPI.tweaker.setScriptProvider(new ScriptProviderDirectory(scriptFile.getParentFile()));
         MineTweakerImplementationAPI.reload();
         MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
-    }
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-
     }
 }
