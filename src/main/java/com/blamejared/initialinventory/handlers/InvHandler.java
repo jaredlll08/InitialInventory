@@ -18,47 +18,45 @@ import java.util.Map;
  */
 @ZenClass("mods.initialinventory.InvHandler")
 public class InvHandler {
-
-    @ZenMethod
-    public static void addStartingItem(IItemStack item) {
-        Map<ItemStack, Integer> map = new HashMap<>();
-        map.put(InputHelper.toStack(item), -1);
-        MineTweakerAPI.apply(new Add(map));
-        System.out.println("adding inv item");
-    }
-
-    @ZenMethod
-    public static void addStartingItem(IItemStack item, int slotID) {
-        Map<ItemStack, Integer> map = new HashMap<>();
-        map.put(InputHelper.toStack(item), slotID);
-        MineTweakerAPI.apply(new Add(map));
-        System.out.println("adding inv item slot");
-    }
-
-    private static class Add extends BaseMapAddition<ItemStack, Integer> {
-
-        protected Add(Map<ItemStack, Integer> recipes) {
-            super("Initial Inventory", Registry.stacks, recipes);
-        }
-
-        @Override
-        public void undo() {
-
-        }
-
-        @Override
-        public boolean canUndo() {
-            return true;
-        }
-
-        @Override
-        public String describeUndo() {
-            return "";
-        }
-
-        @Override
-        protected String getRecipeInfo(Map.Entry<ItemStack, Integer> recipe) {
-            return LogHelper.getStackDescription(recipe.getKey()) + ":" + recipe.getValue();
-        }
-    }
+	
+	@ZenMethod
+	public static void addStartingItem(IItemStack item) {
+		Map<ItemStack, Integer> map = new HashMap<>();
+		map.put(InputHelper.toStack(item), -1);
+		MineTweakerAPI.apply(new Add(map));
+	}
+	
+	@ZenMethod
+	public static void addStartingItem(IItemStack item, int slotID) {
+		Map<ItemStack, Integer> map = new HashMap<>();
+		map.put(InputHelper.toStack(item), slotID);
+		MineTweakerAPI.apply(new Add(map));
+	}
+	
+	private static class Add extends BaseMapAddition<ItemStack, Integer> {
+		
+		protected Add(Map<ItemStack, Integer> recipes) {
+			super("Initial Inventory", Registry.stacks, recipes);
+		}
+		
+		@Override
+		public void undo() {
+			
+		}
+		
+		@Override
+		public boolean canUndo() {
+			return true;
+		}
+		
+		@Override
+		public String describeUndo() {
+			return "";
+		}
+		
+		@Override
+		protected String getRecipeInfo(Map.Entry<ItemStack, Integer> recipe) {
+			return LogHelper.getStackDescription(recipe.getKey()) + ":" + recipe.getValue();
+		}
+	}
 }
