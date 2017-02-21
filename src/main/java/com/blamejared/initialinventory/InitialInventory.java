@@ -4,7 +4,7 @@ import com.blamejared.initialinventory.events.CommonEventHandler;
 import com.blamejared.initialinventory.handlers.InvHandler;
 import minetweaker.MineTweakerAPI;
 import minetweaker.MineTweakerImplementationAPI;
-import minetweaker.mc1102.brackets.ItemBracketHandler;
+import minetweaker.mc1112.brackets.ItemBracketHandler;
 import minetweaker.runtime.providers.ScriptProviderDirectory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;

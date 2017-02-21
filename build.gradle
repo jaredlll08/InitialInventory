@@ -29,16 +29,11 @@ minecraft {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        name 'Jared'
-        url 'http://blamejared.com/maven'
-    }
 }
 
 
 
 dependencies {
-    deobfCompile "com.blamejared:MTLib:1.0.0.6"
 }
 
 processResources {
