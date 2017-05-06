@@ -6,6 +6,7 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.mc1112.brackets.ItemBracketHandler;
 import minetweaker.runtime.providers.ScriptProviderDirectory;
+import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
