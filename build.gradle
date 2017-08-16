@@ -7,7 +7,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
     }
 }
 
@@ -29,11 +29,18 @@ minecraft {
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+        url 'http://maven.blamejared.com'
+    }
 }
 
 
 
 dependencies {
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${version_minetweaker}"
+    deobfCompile "CraftTweaker2:CraftTweaker2-API:1.12-${version_minetweaker}"
+    deobfCompile "CraftTweaker2:ZenScript:1.12-${version_minetweaker}"
+    deobfCompile "com.blamejared:MTLib:3.0.0.+"
 }
 
 processResources {
