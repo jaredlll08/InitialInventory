@@ -19,7 +19,7 @@ group = modGroup
 archivesBaseName = modBaseName
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190719-1.14.3'
+    mappings channel: 'snapshot', version: '20200417-1.15.1'
 
     runs {
         client {
@@ -62,8 +62,8 @@ repositories {
 
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.2.4'
-    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.14.4:5.0.1.174");
+    minecraft 'net.minecraftforge:forge:1.15.2-31.1.46'
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.15.2:6.0.0.17");
 }
 jar {
     manifest {

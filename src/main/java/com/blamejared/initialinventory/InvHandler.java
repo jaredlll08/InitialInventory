@@ -5,16 +5,13 @@ import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.actions.IUndoableAction;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.item.IItemStack;
-import com.blamejared.crafttweaker.api.logger.ILogger;
 import com.blamejared.crafttweaker.impl.item.MCItemStackMutable;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.LogicalSide;
 import org.apache.commons.lang3.tuple.Pair;
 import org.openzen.zencode.java.ZenCodeType;
 
 import java.util.*;
 
-import static org.apache.logging.log4j.core.appender.rewrite.MapRewritePolicy.Mode.Add;
 
 @ZenCodeType.Name("mods.initialinventory.InvHandler")
 @ZenRegister
