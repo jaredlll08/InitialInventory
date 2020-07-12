@@ -31,8 +31,19 @@ if (System.getenv('BUILD_NUMBER') != null) {
 group = modGroup
 archivesBaseName = modBaseName
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'http://maven.blamejared.com'
+    }
+    maven {
+        url 'https://dogforce-games.com/maven'
+    }
+}
+
 minecraft {
-    mappings channel: 'snapshot', version: '20200417-1.15.1'
+    mappings channel: 'snapshot', version: '20200712-1.16.1'
 
     runs {
         client {
@@ -65,13 +76,7 @@ minecraft {
     }
 }
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven {
-        url 'http://maven.blamejared.com'
-    }
-}
+
 
 task genGitChangelog() {
     def stdout = new ByteArrayOutputStream()
@@ -99,8 +104,8 @@ task genGitChangelog() {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.2-31.1.46'
-    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.15.2:6.0.0.17");
+    minecraft 'net.minecraftforge:forge:1.16.1-32.0.63'
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.1:7.0.0.5");
 }
 jar {
     manifest {
@@ -212,7 +217,7 @@ task updateVersionTracker {
         def body = [
                 'author'        : "${project.findProperty('versionTrackerAuthor')}",
                 'projectName'   : "InitialInventory",
-                'gameVersion'   : "1.15.2",
+                'gameVersion'   : "1.16.1",
                 'projectVersion': "${version}",
                 'homepage'      : "${project.findProperty('versionTrackerHomepage')}",
                 'uid'           : "${project.findProperty('versionTrackerKey')}"
