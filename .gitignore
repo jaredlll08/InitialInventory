@@ -24,3 +24,5 @@ usernamecache.json
 *.stackdump
 
 libs/CraftTweaker-Dev-Full-1\.11\.2-3\.0\.21\.24\.jar
+
+secrets.json
