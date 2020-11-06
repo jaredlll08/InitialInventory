@@ -8,7 +8,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
                     echo 'Cleaning Project'
                     sh 'chmod +x gradlew'
-                    sh './gradlew clean'
+                    sh './gradlew clean --no-daemon'
                 }
             }
         }
@@ -16,14 +16,14 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
                     echo 'Building'
-                    sh './gradlew build'
+                    sh './gradlew build --no-daemon'
                 }
             }
         }
         stage('Git Changelog') {
             steps {
                 withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
-                    sh './gradlew genGitChangelog'
+                    sh './gradlew genGitChangelog --no-daemon'
                 }
             }
         }
@@ -32,13 +32,13 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
                     echo 'Updating version'
-                    sh './gradlew updateVersionTracker'
+                    sh './gradlew updateVersionTracker --no-daemon'
 
                     echo 'Deploying to Maven'
-                    sh './gradlew publish'
+                    sh './gradlew publish --no-daemon'
 
                     echo 'Deploying to CurseForge'
-                    sh './gradlew curseforge'
+                    sh './gradlew curseforge --no-daemon'
                 }
             }
         }
