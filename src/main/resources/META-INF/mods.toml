@@ -1,3 +1,6 @@
+# The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
+# Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
+license="All rights reserved"
 modLoader="javafml" #mandatory
 loaderVersion="[34,)" #mandatory (28 is current forge version)
 issueTrackerURL="http://my.issue.tracker/" #optional
