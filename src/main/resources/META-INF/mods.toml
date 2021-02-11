@@ -1,16 +1,12 @@
-# The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
-# Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="MIT"
-modLoader="javafml" #mandatory
-loaderVersion="[34,)" #mandatory (28 is current forge version)
-issueTrackerURL="http://my.issue.tracker/" #optional
-[[mods]] #mandatory
-modId="initialinventory" #mandatory
-version="${file.jarVersion}" #mandatory
-displayName="Initial Inventory" #mandatory
-credits="" #optional
-authors="Jaredlll08" #optional
-updateJSONURL="https://updates.blamejared.com/get?n=InitialInventory&gv=1.16.3"
-description='''
+license = "MIT"
+modLoader = "javafml"
+loaderVersion = "[34,)"
+[[mods]]
+modId = "initialinventory"
+version = "${file.jarVersion}"
+displayName = "Initial Inventory"
+authors = "Jaredlll08"
+updateJSONURL = "https://updates.blamejared.com/get?n=InitialInventory&gv=1.16.5"
+description = '''
 Lets you define starting items through zenscript
 '''
