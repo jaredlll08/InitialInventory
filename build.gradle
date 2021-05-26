@@ -1,33 +1,25 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://maven.blamejared.com' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'com.blamejared', name: 'ModTemplate', version: '1.+', changing: true
     }
 }
 plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'com.blamejared.modtemplate'
 apply plugin: 'maven-publish'
-apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/22e7d543a18cd30675277fbfa3669e3d9e206010/generic/secrets.gradle'
-
-import groovy.json.JsonOutput
-
-if (project.hasProperty('secretFile')) {
-    loadSecrets(new File((String) findProperty('secretFile')))
-}
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 version = modVersion
-if (System.getenv('BUILD_NUMBER') != null) {
-    version += "." + System.getenv('BUILD_NUMBER')
-}
 group = modGroup
 archivesBaseName = modBaseName
 
@@ -35,10 +27,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven {
-        url 'http://maven.blamejared.com'
-    }
-    maven {
-        url 'https://dogforce-games.com/maven'
+        url 'https://maven.blamejared.com'
     }
 }
 
@@ -49,7 +38,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
             mods {
-                examplemod {
+                initialinventory {
                     source sourceSets.main
                 }
             }
@@ -58,7 +47,7 @@ minecraft {
         server {
             workingDirectory project.file('run')
             mods {
-                examplemod {
+                initialinventory {
                     source sourceSets.main
                 }
             }
@@ -66,9 +55,9 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'initialinventory', '--all', '--output', file('src/generated/resources/')
             mods {
-                examplemod {
+                initialinventory {
                     source sourceSets.main
                 }
             }
@@ -76,36 +65,33 @@ minecraft {
     }
 }
 
+modTemplate {
+    mcVersion "1.16.5"
+    curseHomepage "https://www.curseforge.com/minecraft/mc-mods/initial-inventory"
+    displayName "InitialInventory"
 
-task genGitChangelog() {
-    def stdout = new ByteArrayOutputStream()
-    // first commit to check from, in our case the first commit of the branch
-    String firstCommit = "20a9ba2ebf5afb005ae294f43a73361ae96220b5";
-    String repoLink = "https://github.com/jaredlll08/InitialInventory/commit/"
-    // was having issues with grep and spaces in the regex
-    exec {
-        commandLine 'git', 'log', '-i', '--grep=version\\spush', '--pretty=tformat:%H', '--date=local', firstCommit + '..@{0}'
-        standardOutput = stdout
+    changelog {
+        enabled true
+        firstCommit "20a9ba2ebf5afb005ae294f43a73361ae96220b5"
+        repo "https://github.com/jaredlll08/InitialInventory"
     }
-    if (stdout.toString().trim().indexOf("\n") >= 0) {
-        firstCommit = stdout.toString().split("\n")[0].trim();
+    versionTracker {
+        enabled true
+        author "Jared"
+        projectName "InitialInventory"
     }
-    System.out.println("Last version hash: \"" + firstCommit + "\"");
-    stdout = new ByteArrayOutputStream()
-    def test = exec {
-        commandLine 'git', 'log', '--pretty=tformat:- [%s](' + repoLink + '%H) - %aN - %cd', '--max-parents=1', '--date=local', firstCommit + "..@"
-        standardOutput = stdout
+    webhook {
+        enabled true
+        curseId "253230"
+        avatarUrl "https://media.forgecdn.net/avatars/54/824/636138680010357541.png"
     }
-    File file = new File("changelog.md")
-    file.write("### Current version: " + project.version)
-    file.append("\n" + stdout.toString())
-    System.out.println("Changelog generated!")
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${minecraft_version}:${crafttweaker_version}")
 }
+
 jar {
     manifest {
         attributes([
@@ -143,6 +129,9 @@ artifacts {
     archives javadocJar
     archives deobfJar
 }
+
+publish.dependsOn(project.tasks.getByName("assemble"))
+publish.mustRunAfter(project.tasks.getByName("build"))
 
 publishing {
 
@@ -203,36 +192,4 @@ curseforge {
 //        addArtifact(javadocJar)
         addArtifact(deobfJar)
     }
-}
-
-task updateVersionTracker {
-
-    onlyIf {
-
-        project.hasProperty('versionTrackerAPI')
-    }
-
-    doLast {
-        def body = [
-                'author'        : "${project.findProperty('versionTrackerAuthor')}",
-                'projectName'   : "InitialInventory",
-                'gameVersion'   : "${minecraft_version}",
-                'projectVersion': "${version}",
-                'homepage'      : "${project.findProperty('versionTrackerHomepage')}",
-                'uid'           : "${project.findProperty('versionTrackerKey')}"
-        ]
-
-        // Opens a connection to the version tracker API and writes the payload JSON.
-        def req = new URL(project.findProperty('versionTrackerAPI')).openConnection()
-        req.setRequestMethod('POST')
-        req.setRequestProperty('Content-Type', 'application/json; charset=UTF-8')
-        req.setRequestProperty('User-Agent', "InitialInventory Tracker Gradle")
-        req.setDoOutput(true)
-        req.getOutputStream().write(JsonOutput.toJson(body).getBytes("UTF-8"))
-
-        // We need to attempt a read in order to actually send the message.
-        println "VersionCheck Status code: ${req.getResponseCode()}"
-        println "VersionCheck Response: ${req.getInputStream().getText()}"
-    }
-
 }
