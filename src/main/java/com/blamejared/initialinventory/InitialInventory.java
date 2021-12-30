@@ -1,6 +1,7 @@
 package com.blamejared.initialinventory;
 
 
+import com.blamejared.crafttweaker.api.item.IItemStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -9,7 +10,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.Map;
 @Mod("initialinventory")
 public class InitialInventory {
     
-    public static final Map<String, List<Pair<ItemStack, Integer>>> STACK_MAP = new HashMap<>();
+    public static final Map<String, List<InventoryItem>> STACK_MAP = new HashMap<>();
     
     public InitialInventory() {
         
@@ -36,19 +36,20 @@ public class InitialInventory {
             }
         }
         
-        STACK_MAP.forEach((s, pairs) -> {
+        STACK_MAP.forEach((s, inventoryItems) -> {
             if(tag.getBoolean("initialinventory_" + s)) {
-                System.out.println(s);
                 return;
             }
-            pairs.forEach(pair -> {
-                if(pair.getRight() <= -1) {
-                    ItemHandlerHelper.giveItemToPlayer(e.getPlayer(), pair.getLeft().copy());
+            inventoryItems.forEach(item -> {
+                IItemStack givenIStack = item.getOnGiven().apply(item.getStack().copy(), e.getPlayer());
+                ItemStack givenStack = givenIStack.getInternal().copy();
+                if(item.getIndex() <= -1) {
+                    ItemHandlerHelper.giveItemToPlayer(e.getPlayer(), givenStack);
                 } else {
-                    if(e.getPlayer().inventory.getStackInSlot(pair.getRight()) != ItemStack.EMPTY) {
-                        ItemHandlerHelper.giveItemToPlayer(e.getPlayer(), pair.getLeft().copy());
+                    if(e.getPlayer().inventory.getStackInSlot(item.getIndex()) != ItemStack.EMPTY) {
+                        ItemHandlerHelper.giveItemToPlayer(e.getPlayer(), givenStack);
                     } else {
-                        e.getPlayer().inventory.setInventorySlotContents(pair.getRight(), pair.getLeft().copy());
+                        e.getPlayer().inventory.setInventorySlotContents(item.getIndex(), givenStack);
                     }
                 }
             });
