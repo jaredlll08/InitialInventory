@@ -21,3 +21,6 @@ build
 # other
 eclipse
 run
+docsOut/
+changelog.md
+secrets.json
