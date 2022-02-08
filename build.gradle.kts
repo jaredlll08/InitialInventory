@@ -54,6 +54,19 @@ allprojects {
 
         enabled = false
     }
+
+    tasks.withType<Javadoc> {
+
+        options {
+
+            // Javadoc defines this specifically as StandardJavadocDocletOptions
+            // but only has a getter for MinimalJavadocOptions, but let's just make sure to be safe
+            if (this is StandardJavadocDocletOptions) {
+                this.tags("docParam", "docEvent", "docShortDescription")
+                this.addStringOption("Xdoclint:none", "-quiet")
+            }
+        }
+    }
 }
 
 
