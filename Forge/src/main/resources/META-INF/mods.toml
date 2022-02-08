@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[39,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/jaredlll08/InitialInventory/issues"
+[[mods]]
+modId = "initialinventory"
+version = "${file.jarVersion}"
+displayName = "Initial Inventory"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/initial-inventory"
+updateJSONURL = "https://updates.blamejared.com/get?n=InitialInventory&gv=1.18.1"
+logoFile = "icon.png"
+authors = "Jaredlll08"
+description = "Lets you define custom starting items with CraftTweaker"
+itemIcon = "minecraft:crafting_table"
+[[dependencies.initialinventory]]
+modId = "forge"
+mandatory = true
+versionRange = "[39,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.initialinventory]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.1,1.19)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.initialinventory]]
+modId = "crafttweaker"
+mandatory = true
+versionRange = "[9.0.46,)"
+ordering = "NONE"
+side = "BOTH"

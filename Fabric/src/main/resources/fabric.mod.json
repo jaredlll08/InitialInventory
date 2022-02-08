@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "initialinventory",
+  "version": "${version}",
+  "name": "Initial Inventory",
+  "description": "Lets you define starting items through zenscript",
+  "authors": [
+    "Jaredlll08"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/initial-inventory",
+    "sources": "https://github.com/jaredlll08/InitialInventory"
+  },
+  "license": "MIT",
+  "icon": "assets/initialinventory/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.blamejared.initialinventory.InitialInventoryFabric"
+    ]
+  },
+  "mixins": [
+    "initialinventory.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "crafttweaker": ">=9.0.46",
+    "faux-custom-entity-data": ">=1.0.1"
+  }
+}
+  

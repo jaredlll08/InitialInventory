@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.blamejared.initialinventory.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "MixinPlayerList"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+  }
+  
