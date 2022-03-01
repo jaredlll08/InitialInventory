@@ -122,6 +122,8 @@ tasks.create<TaskPublishCurseForge>("publishCurseForge") {
     mainFile.releaseType = CFG_Constants.RELEASE_TYPE_RELEASE
     mainFile.addJavaVersion("Java $modJavaVersion")
     mainFile.addGameVersion(minecraftVersion)
+    mainFile.addRequirement("crafttweaker")
+    mainFile.addRequirement("faux-custom-entity-data")
 
     doLast {
         project.ext.set("curse_file_url", "${curseHomepageLink}/files/${mainFile.curseFileId}")
