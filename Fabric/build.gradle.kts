@@ -40,7 +40,7 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabricVersion}")
     implementation(project(":Common"))
 
-    modImplementation("com.faux.fauxcustomentitydata:FauxCustomEntityData-fabric-1.18.1:1.0.1")
+    modImplementation("com.faux.fauxcustomentitydata:FauxCustomEntityData-fabric-1.18.2:2.0.1")
     modImplementation("com.blamejared.crafttweaker:CraftTweaker-fabric-${minecraftVersion}:${crafttweakerVersion}")
 
 }
