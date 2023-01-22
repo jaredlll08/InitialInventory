@@ -28,7 +28,7 @@ dependencies {
     compileOnly("org.spongepowered:mixin:0.8.5")
     compileOnly("com.blamejared.crafttweaker:CraftTweaker-common-${minecraftVersion}:${crafttweakerVersion}")
 
-    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors-${minecraftVersion}:${crafttweakerAPVersion}")
+    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${crafttweakerAPVersion}")
     annotationProcessor("com.blamejared.crafttweaker:CraftTweaker-common-${minecraftVersion}:${crafttweakerVersion}")
 }
 

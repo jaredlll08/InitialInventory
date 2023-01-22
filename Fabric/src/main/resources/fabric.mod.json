@@ -23,12 +23,12 @@
     "initialinventory.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.13",
+    "fabricloader": ">=0.14",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.19.x",
     "java": ">=17",
-    "crafttweaker": ">=9.0.46",
-    "faux-custom-entity-data": ">=1.0.1"
+    "crafttweaker": ">=10.0.25",
+    "faux-custom-entity-data": ">=2.0.2"
   }
 }
   

@@ -6,7 +6,7 @@ import net.darkhax.curseforgegradle.Constants as CFG_Constants
 plugins {
     idea
     `maven-publish`
-    id("fabric-loom") version "0.10-SNAPSHOT"
+    id("fabric-loom") version "1.0-SNAPSHOT"
     id("com.blamejared.modtemplate")
     id("net.darkhax.curseforgegradle") version ("1.0.9")
 }
@@ -40,7 +40,7 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabricVersion}")
     implementation(project(":Common"))
 
-    modImplementation("com.faux.fauxcustomentitydata:FauxCustomEntityData-fabric-1.18.2:2.0.1")
+    modImplementation("com.faux.fauxcustomentitydata:FauxCustomEntityData-fabric-1.19.2:2.0.2")
     modImplementation("com.blamejared.crafttweaker:CraftTweaker-fabric-${minecraftVersion}:${crafttweakerVersion}")
 
 }
