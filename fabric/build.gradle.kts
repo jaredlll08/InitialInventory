@@ -1,6 +1,6 @@
+import com.blamejared.gradle.mod.utils.GMUtils
 import com.blamejared.initialinventory.gradle.Properties
 import com.blamejared.initialinventory.gradle.Versions
-import com.blamejared.gradle.mod.utils.GMUtils
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
 import net.darkhax.curseforgegradle.Constants as CFG_Constants
 
@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":common"))
     modImplementation("com.blamejared.crafttweaker:CraftTweaker-fabric-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}")
     modImplementation("com.faux.fauxcustomentitydata:FauxCustomEntityData-fabric-${Versions.MINECRAFT}:${Versions.FAUX_CUSTOM_ENTITY_DATA}")
+    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
 }
 
 loom {
