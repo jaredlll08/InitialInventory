@@ -7,7 +7,7 @@ modId = "initialinventory"
 version = "${file.jarVersion}"
 displayName = "Initial Inventory"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/initial-inventory"
-updateJSONURL = "https://updates.blamejared.com/get?n=InitialInventory&gv=1.20"
+updateJSONURL = "https://updates.blamejared.com/get?n=InitialInventory&gv=1.20.1"
 logoFile = "icon.png"
 authors = "Jaredlll08"
 description = "Lets you define custom starting items with CraftTweaker"
@@ -21,7 +21,7 @@ side = "BOTH"
 [[dependencies.initialinventory]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20,)"
+versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.initialinventory]]
