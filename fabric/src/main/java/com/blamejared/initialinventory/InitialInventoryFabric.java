@@ -9,7 +9,7 @@ public class InitialInventoryFabric implements ModInitializer {
     public void onInitialize() {
         
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            if(alive || newPlayer.level.isClientSide()) {
+            if(alive || newPlayer.level().isClientSide()) {
                 return;
             }
             InitialInventoryCommon.playerRespawn(newPlayer);

@@ -27,7 +27,7 @@ public class InitialInventoryForge {
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         
-        if(event.isEndConquered() || event.getEntity().level.isClientSide()) {
+        if(event.isEndConquered() || event.getEntity().level().isClientSide()) {
             return;
         }
         InitialInventoryCommon.playerRespawn(event.getEntity());
