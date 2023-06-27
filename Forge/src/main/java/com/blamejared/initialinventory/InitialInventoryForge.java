@@ -19,18 +19,18 @@ public class InitialInventoryForge {
     public void playerLogin(final PlayerEvent.PlayerLoggedInEvent e) {
         
         InitialInventoryCommon.playerLogin(
-                e.getPlayer(),
-                () -> e.getPlayer().getPersistentData().getCompound(Player.PERSISTED_NBT_TAG),
-                compoundTag -> e.getPlayer().getPersistentData().put(Player.PERSISTED_NBT_TAG, compoundTag));
+                e.getEntity(),
+                () -> e.getEntity().getPersistentData().getCompound(Player.PERSISTED_NBT_TAG),
+                compoundTag -> e.getEntity().getPersistentData().put(Player.PERSISTED_NBT_TAG, compoundTag));
     }
     
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         
-        if(event.isEndConquered() || event.getPlayer().level.isClientSide()) {
+        if(event.isEndConquered() || event.getEntity().level.isClientSide()) {
             return;
         }
-        InitialInventoryCommon.playerRespawn(event.getPlayer());
+        InitialInventoryCommon.playerRespawn(event.getEntity());
     }
     
 }

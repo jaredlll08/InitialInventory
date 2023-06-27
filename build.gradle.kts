@@ -2,7 +2,6 @@ import com.blamejared.modtemplate.Utils
 import com.diluv.schoomp.Webhook
 import com.diluv.schoomp.message.Message
 import com.diluv.schoomp.message.embed.Embed
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,6 +25,7 @@ plugins {
     java
     idea
     id("com.blamejared.modtemplate") version ("3.0.0.37")
+    id("com.modrinth.minotaur") version "2.+" apply(false)
 }
 
 version = Utils.updatingVersion(modVersion)

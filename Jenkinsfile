@@ -16,7 +16,9 @@ pipeline {
     tools {
         jdk 'jdk-17.0.1'
     }
-
+    environment {
+        modrinth_token = credentials('modrinth_token')
+    }
     stages {
         stage('Clean') {
             steps {
@@ -89,7 +91,7 @@ pipeline {
                                     echo 'Skipping CurseForge due to [skip deploy]'
                                 } else {
                                     echo 'Deploying to CurseForge'
-                                    sh './gradlew publishCurseForge postDiscord'
+                                    sh './gradlew publishCurseForge modrinth postDiscord'
                                 }
                             }
                         }

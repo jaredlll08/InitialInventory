@@ -9,6 +9,7 @@ plugins {
     id("fabric-loom") version "1.0-SNAPSHOT"
     id("com.blamejared.modtemplate")
     id("net.darkhax.curseforgegradle") version ("1.0.9")
+    id("com.modrinth.minotaur")
 }
 
 val modVersion: String by project
@@ -22,6 +23,7 @@ val crafttweakerVersion: String by project
 val modAvatar: String by project
 val curseProjectId: String by project
 val curseHomepageLink: String by project
+val modrinthProjectId: String by project
 val gitFirstCommit: String by project
 val gitRepo: String by project
 val modJavaVersion: String by project
@@ -130,3 +132,15 @@ tasks.create<TaskPublishCurseForge>("publishCurseForge") {
     }
 }
 
+
+modrinth {
+    token.set(Utils.locateProperty(project, "modrinth_token"))
+    projectId.set(modrinthProjectId)
+    changelog.set(Utils.getFullChangelog(project))
+    versionName.set("Fabric-${minecraftVersion}-$version")
+    versionType.set("release")
+    uploadFile.set(tasks.remapJar.get())
+    dependencies {
+        required.project("crafttweaker")
+    }
+}
