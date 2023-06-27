@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        maven("https://maven.blamejared.com")
         gradlePluginPortal()
         maven("https://maven.fabricmc.net/") {
             name = "Fabric"
@@ -7,21 +8,12 @@ pluginManagement {
         maven("https://repo.spongepowered.org/repository/maven-public/") {
             name = "Sponge Snapshots"
         }
-        maven("https://maven.minecraftforge.net") {
-            name = "Forge"
-        }
-        maven("https://maven.blamejared.com") {
-            name = "BlameJared"
-        }
-    }
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.id == "org.spongepowered.mixin") {
-                useModule("org.spongepowered:mixingradle:${requested.version}")
-            }
-        }
     }
 }
-
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+}
 rootProject.name = "InitialInventory"
-include("Common", "Fabric", "Forge")
+include("common")
+include("fabric")
+include("forge")

@@ -1,6 +1,7 @@
 package com.blamejared.initialinventory.actions;
 
 import com.blamejared.crafttweaker.api.action.base.IUndoableAction;
+import com.blamejared.initialinventory.Constants;
 import com.blamejared.initialinventory.InitialInventoryCommon;
 import com.blamejared.initialinventory.items.StartingItem;
 
@@ -21,6 +22,12 @@ public record ActionAddStartingItem(StartingItem item) implements IUndoableActio
         
         return String.format("Adding starting item: %s in slot: %s in key: %s", item.stack()
                 .getCommandString(), item.index(), item.key());
+    }
+    
+    @Override
+    public String systemName() {
+        
+        return Constants.MOD_NAME;
     }
     
     @Override
