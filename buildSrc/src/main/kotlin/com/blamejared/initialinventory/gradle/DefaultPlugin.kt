@@ -85,10 +85,11 @@ class DefaultPlugin : Plugin<Project> {
                 this.options.isFork = true
                 this.options.compilerArgs.add("-XDenableSunApiLintControl")
             }
-
             withType<JavaCompile> {
                 this.options.encoding = StandardCharsets.UTF_8.toString()
                 this.options.release.set(Versions.JAVA.toInt())
+                this.options.compilerArgs.add("-Acrafttweaker.processor.document.output_directory=${project.rootProject.file(Properties.DOCS_OUTPUT_DIR)}")
+                this.options.compilerArgs.add("-Acrafttweaker.processor.document.multi_source=true")
             }
 
             withType<Javadoc> {

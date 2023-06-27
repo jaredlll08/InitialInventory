@@ -1,6 +1,6 @@
+import com.blamejared.gradle.mod.utils.GMUtils
 import com.blamejared.initialinventory.gradle.Properties
 import com.blamejared.initialinventory.gradle.Versions
-import com.blamejared.gradle.mod.utils.GMUtils
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
 import net.darkhax.curseforgegradle.Constants as CFG_Constants
 
@@ -35,7 +35,7 @@ dependencies {
     compileOnly(project(":common"))
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     implementation(fg.deobf("com.blamejared.crafttweaker:CraftTweaker-forge-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}"))
-
+    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
 }
 
 tasks.create<TaskPublishCurseForge>("publishCurseForge") {

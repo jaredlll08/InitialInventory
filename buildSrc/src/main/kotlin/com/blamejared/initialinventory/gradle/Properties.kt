@@ -11,4 +11,5 @@ object Properties {
     const val MODRINTH_PROJECT_ID = "L4ZloL5E"
     const val FIRST_COMMIT = "f08035f8b5104a1520c8e6afd0f6021394039fb7"
     const val GIT_REPO = "https://github.com/jaredlll08/InitialInventory"
+    const val DOCS_OUTPUT_DIR = "docsOut"
 }
