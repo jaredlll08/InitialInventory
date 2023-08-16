@@ -10,10 +10,10 @@ import java.util.function.BiFunction;
 public class RespawnItem {
     
     protected final IItemStack stack;
-    protected final int index;
+    protected final BiFunction<IItemStack, Player, Integer> index;
     protected final BiFunction<IItemStack, Player, IItemStack> onGiven;
     
-    public RespawnItem(IItemStack stack, int index, BiFunction<IItemStack, Player, IItemStack> onGiven) {
+    public RespawnItem(IItemStack stack, BiFunction<IItemStack, Player, Integer> index, BiFunction<IItemStack, Player, IItemStack> onGiven) {
         
         this.stack = stack;
         this.index = index;
@@ -25,7 +25,7 @@ public class RespawnItem {
         return stack;
     }
     
-    public int index() {
+    public BiFunction<IItemStack, Player, Integer> index() {
         
         return index;
     }

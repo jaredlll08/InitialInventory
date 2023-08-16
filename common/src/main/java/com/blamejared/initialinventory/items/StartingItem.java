@@ -11,7 +11,7 @@ public class StartingItem extends RespawnItem {
     
     private final String key;
     
-    public StartingItem(String key, IItemStack stack, int index, BiFunction<IItemStack, Player, IItemStack> onGiven) {
+    public StartingItem(String key, IItemStack stack, BiFunction<IItemStack, Player, Integer> index, BiFunction<IItemStack, Player, IItemStack> onGiven) {
         
         super(stack, index, onGiven);
         this.key = key;

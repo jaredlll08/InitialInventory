@@ -1,6 +1,7 @@
 import com.blamejared.initialinventory.gradle.Versions
 
 plugins {
+    id("java")
     id("org.spongepowered.gradle.vanilla") version "0.2.1-SNAPSHOT"
     id("com.blamejared.initialinventory.default")
 }
