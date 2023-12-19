@@ -15,7 +15,7 @@ import java.util.function.BiFunction;
 
 @ZenRegister
 @ZenCodeType.Name("mods.initialinventory.InvHandler")
-@Document("mods/initialinventory/InvHandler")
+@Document("mods/InitialInventory/InvHandler")
 public class InvHandler {
     
     /**
