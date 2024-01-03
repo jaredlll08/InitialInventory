@@ -1,41 +1,28 @@
 import com.blamejared.gradle.mod.utils.GMUtils
 import com.blamejared.initialinventory.gradle.Properties
 import com.blamejared.initialinventory.gradle.Versions
+import net.darkhax.curseforgegradle.Constants
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
-import net.darkhax.curseforgegradle.Constants as CFG_Constants
 
 plugins {
     id("com.blamejared.initialinventory.default")
     id("com.blamejared.initialinventory.loader")
-    id("net.minecraftforge.gradle") version ("[6.0,6.2)")
-    id("org.spongepowered.mixin") version ("0.7-SNAPSHOT")
+    id("net.neoforged.gradle.userdev") version ("7.0.71")
     id("com.modrinth.minotaur")
 }
 
-minecraft {
-    mappings("official", Versions.MINECRAFT)
-    accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
-    runs {
-        create("client") {
-            taskName("Client")
-            workingDirectory(project.file("run"))
-            ideaModule("${rootProject.name}.${project.name}.main")
-            mods {
-                create(Properties.MODID) {
-                    source(sourceSets.main.get())
-                    source(project(":common").sourceSets.main.get())
-                }
-            }
-        }
+runs {
+    configureEach {
+        modSource(project.sourceSets.main.get())
+    }
+    register("client") {
     }
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:${Versions.MINECRAFT}-${Versions.FORGE}")
+    implementation("net.neoforged:neoforge:${Versions.NEO_FORGE}")
     compileOnly(project(":common"))
-    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    implementation(fg.deobf("com.blamejared.crafttweaker:CraftTweaker-forge-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}"))
-    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
+    implementation("com.blamejared.crafttweaker:CraftTweaker-neoforge-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}")
 }
 
 tasks.create<TaskPublishCurseForge>("publishCurseForge") {
@@ -45,8 +32,10 @@ tasks.create<TaskPublishCurseForge>("publishCurseForge") {
     val mainFile = upload(Properties.CURSE_PROJECT_ID, tasks.jar.get().archiveFile)
     mainFile.changelogType = "markdown"
     mainFile.changelog = GMUtils.smallChangelog(project, Properties.GIT_REPO)
-    mainFile.releaseType = CFG_Constants.RELEASE_TYPE_RELEASE
+    mainFile.releaseType = Constants.RELEASE_TYPE_RELEASE
     mainFile.addJavaVersion("Java ${Versions.JAVA}")
+    mainFile.addGameVersion(Versions.MINECRAFT)
+    mainFile.addModLoader("NeoForge")
     mainFile.addRequirement("crafttweaker")
 
     doLast {
@@ -58,8 +47,9 @@ modrinth {
     token.set(GMUtils.locateProperty(project, "modrinth_token"))
     projectId.set(Properties.MODRINTH_PROJECT_ID)
     changelog.set(GMUtils.smallChangelog(project, Properties.GIT_REPO))
-    versionName.set("Forge-${Versions.MINECRAFT}-$version")
+    versionName.set("NeoForge-${Versions.MINECRAFT}-$version")
     versionType.set("release")
+    gameVersions.set(listOf(Versions.MINECRAFT))
     uploadFile.set(tasks.jar.get())
     dependencies {
         required.project("crafttweaker")
