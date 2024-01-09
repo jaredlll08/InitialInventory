@@ -38,6 +38,12 @@ dependencies {
     annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
 }
 
+sourceSets.configureEach {
+    val dir = layout.buildDirectory.dir("sourcesSets/$this.name")
+    this.output.setResourcesDir(dir)
+    this.java.destinationDirectory.set(dir)
+}
+
 tasks.create<TaskPublishCurseForge>("publishCurseForge") {
     dependsOn(tasks.jar)
     apiToken = GMUtils.locateProperty(project, "curseforgeApiToken") ?: 0
